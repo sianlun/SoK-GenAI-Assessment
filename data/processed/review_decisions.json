@@ -1,0 +1,454 @@
+{
+  "163": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "329": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "409": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "506": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "527": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1362": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1522": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1796": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1846": {
+    "decision": "EXCLUDE",
+    "reason": "EC-SCOPE: paper not about educational assessment (hard exclude)"
+  },
+  "2124": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "2215": {
+    "decision": "EXCLUDE",
+    "reason": "EC-SCOPE: paper not about educational assessment (hard exclude)"
+  },
+  "2221": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "2287": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "2426": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "2524": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "2575": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "2622": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "63": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "176": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "192": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "220": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "248": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "269": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "277": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "310": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "386": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "388": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "404": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "420": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "436": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "512": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "521": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "556": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "583": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "592": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "639": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "642": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "647": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "658": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "700": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "724": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "728": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "734": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "780": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "842": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "849": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "856": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "880": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "884": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "925": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "932": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "933": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "937": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "947": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "960": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "984": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1004": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1043": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1053": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1136": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1138": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1167": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1178": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1182": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1185": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1196": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1204": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1227": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1232": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1262": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1292": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1321": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1322": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1334": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1335": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1338": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1339": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1358": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1379": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  },
+  "1380": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1384": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1385": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1400": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1435": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1452": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1488": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1489": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1491": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1492": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1495": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1501": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1528": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1532": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1536": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1550": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1551": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1552": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1642": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1668": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1702": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1788": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1797": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1894": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1905": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1923": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1929": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "1963": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "1986": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "2088": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "2383": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "2462": {
+    "decision": "EXCLUDE",
+    "reason": "EC-AI: no GenAI tool signal in title+abstract"
+  },
+  "2502": {
+    "decision": "EXCLUDE",
+    "reason": "EC-ASSESS: no assessment/grading/feedback signal"
+  },
+  "2563": {
+    "decision": "EXCLUDE",
+    "reason": "EC-EDU: no education/student/course signal"
+  }
+}

@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# SoK Pipeline — Python dependencies
+# Install with: pip install -r requirements.txt
+#
+# External system tool also required for extract.py (Round 1):
+#   macOS:  brew install poppler
+#   Ubuntu: sudo apt install poppler-utils
+#   This gives you pdftotext on the command line.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Anthropic SDK — used by screen.py for AI-assisted screening
+anthropic>=0.40.0
+
+# PDF text extraction — used by extract_alt.py (Round 2)
+pypdf>=4.0.0
+
+# Excel read/write — used by screen.py, build_xlsx.py, build_alt_and_verify.py
+openpyxl>=3.1.0
+
+# Data manipulation — used throughout
+pandas>=2.0.0
+
+# BibTeX parsing — used by the earlier parse_bib.py (already installed)
+bibtexparser>=1.4.0
+
+# HTTP requests — used by download_oa.py (Unpaywall API)
+requests>=2.31.0
+
+# Fuzzy string matching — used by build_alt_and_verify.py for field comparison
+thefuzz>=0.22.0
+python-Levenshtein>=0.25.0   # speeds up thefuzz

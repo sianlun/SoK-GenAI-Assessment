@@ -1,0 +1,41 @@
+# ── PDF corpus (617 files, ~3 GB — path-referenced via data/manifest/) ────────
+_pdfs/
+
+# ── Institutional credentials / session cookies (NEVER commit) ────────────────
+*_cookies.txt
+cookies/
+*.cookie
+
+# ── Python cache ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# ── R artefacts ────────────────────────────────────────────────────────────────
+.Rhistory
+.RData
+.Rproj.user/
+
+# ── Large regeneratable caches ─────────────────────────────────────────────────
+_oa_cache.json
+_screening_checkpoint.json
+_download_auth_log.json
+
+# ── macOS metadata ─────────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ── Node ───────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Temporary ──────────────────────────────────────────────────────────────────
+*.tmp
+*.bak
+*.swp
+*~
+Thumbs.db
