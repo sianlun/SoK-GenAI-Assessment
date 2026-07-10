@@ -23,6 +23,14 @@ _oa_cache.json
 _screening_checkpoint.json
 _download_auth_log.json
 
+# ── Large processed/derived files (regenerate by running pipelines) ───────────
+# bibliometrix_merged.csv is the 11MB CSV export of the RDS — not needed in git
+data/processed/bibliometrix_merged.csv
+# Full-text extract dump (~34MB, regenerate with pipeline2/content_analysis/01)
+pipeline2_analysis/outputs/tables/fulltext_extracts.jsonl
+# Merged RDS (3MB, regenerate with 01_load_and_merge.R)
+data/processed/bibliometrix_merged.rds
+
 # ── macOS metadata ─────────────────────────────────────────────────────────────
 .DS_Store
 ._*

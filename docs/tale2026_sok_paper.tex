@@ -1,0 +1,606 @@
+% ============================================================
+% IEEE TALE 2026 — Conference Paper
+% Generative AI in Assessment: A Systematization of Knowledge
+% Template: IEEEtran (conference mode)
+% ============================================================
+\documentclass[conference]{IEEEtran}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage{cite}           % Sort and compress citation numbers
+\usepackage{amsmath}
+\usepackage{booktabs}       % \toprule, \midrule, \bottomrule
+\usepackage{array}          % Column type control
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{tabularx}       % Auto-width columns
+\usepackage{ragged2e}       % \RaggedRight in table cells
+
+% Fix IEEEtran + hyperref interaction
+\makeatletter
+\AtBeginDocument{%
+  \let\IEEEproof\proof
+  \let\IEEEendproof\endproof
+}
+\makeatother
+
+% Slightly tighter spacing in tables
+\renewcommand{\arraystretch}{1.15}
+
+% ── Metadata ──────────────────────────────────────────────────────────────────
+\title{Generative AI in Assessment within Engineering, STEM, and Computing Education:
+       A Systematization of Knowledge}
+
+\author{%
+  \IEEEauthorblockN{Sian Lerk Lau}
+  \IEEEauthorblockA{%
+    \textit{School of Mathematical and Computer Sciences}\\
+    Sunway University\\
+    Petaling Jaya, Malaysia\\
+    sianlunl@sunway.edu.my
+  }
+}
+
+% ── Begin document ─────────────────────────────────────────────────────────────
+\begin{document}
+
+\maketitle
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\begin{abstract}
+The public release of ChatGPT in November 2022 catalysed a rapid expansion of scholarship on
+generative AI~(GenAI) in educational assessment, yet the literature has outpaced synthesis
+efforts. This paper presents a Systematization of Knowledge~(SoK) review drawing on 641
+peer-reviewed papers sourced from five databases (Scopus, Web of Science, IEEE Xplore, ACM
+Digital Library, and ERIC), spanning 2022 to mid-2026, with bibliometric analysis covering
+2,122 deduplicated records. A dual-pipeline methodology was employed: bibliometric network
+analysis and keyword-based thematic coding of 617 full-text PDFs. Annual output grew from 114
+papers in 2023 to 1,054 in 2025 (CAGR~296.6\%), with publication dominated by ASEE, ACM
+SIGCSE, and FIE proceedings. Keyword co-occurrence analysis identifies four primary clusters:
+Disciplinary Contexts ($n{=}1{,}681$ co-occurrences), GenAI/Assessment Discourse
+($n{=}1{,}662$), LLM Applications in Education ($n{=}1{,}417$), and CS/Computing Pedagogy
+($n{=}987$). Full-text taxonomy coding across seven categories reveals that ethics and policy
+concerns~(90.3\%), perception and affect~(92.7\%), and review methodology~(93.5\%) dominate,
+while automated grading~(47.0\%) and authentic assessment redesign~(44.9\%) remain
+comparatively thin. Evidence quality mapping reveals a consistent structural gap: despite high
+publication volume, fewer than one in ten papers reports a controlled evaluation of an
+implemented intervention. These findings reveal a field characterised by diagnostic breadth
+but insufficient operationalisation, and identify automated grading validity, AI-integrated
+assessment design, and cross-national equity studies as highest-priority research directions.
+\end{abstract}
+
+\begin{IEEEkeywords}
+generative AI; assessment; engineering education; STEM; computing education; systematization
+of knowledge; large language models; evidence synthesis
+\end{IEEEkeywords}
+
+% ── I. Introduction ───────────────────────────────────────────────────────────
+\section{Introduction}
+
+The public release of ChatGPT in November 2022 marked a qualitative shift in the relationship
+between artificial intelligence and education. Unlike preceding AI tools that augmented
+specific narrow tasks, large language models~(LLMs) capable of generating coherent academic
+prose, executable code, and plausible solutions to engineering problems challenged foundational
+assumptions about what student-produced work could and should demonstrate. Within months,
+academic institutions worldwide were grappling with questions that traditional assessment
+frameworks had not been designed to answer: How do we verify authorship? What constitutes
+authentic demonstration of competence? How should formative feedback be redesigned when
+students can generate instant, detailed responses from an AI?
+
+These questions are particularly acute in engineering, STEM, and computing disciplines, where
+the outputs most readily produced by GenAI tools---code, calculations, and structured technical
+reports---overlap substantially with standard assessment artefacts. The scholarly response has
+been rapid: annual publication output grew from 114 papers in 2023 to 1,054 in 2025, a rate
+that outpaces even the GenAI adoption curve itself. Without systematic mapping, the field risks
+duplicating effort, pursuing fashionable sub-themes at the expense of critical gaps, and failing
+to translate a growing evidence base into actionable guidance for practitioners.
+
+This paper addresses that need with a Systematization of Knowledge~(SoK) review---a methodology
+that produces structured, reproducible overviews of rapidly developing fields by mapping not only
+\textit{what} is known, but \textit{how well} it is known and \textit{what remains unknown}.
+Unlike a conventional systematic review that synthesises around a pre-specified research question,
+a SoK explicitly characterises the shape of knowledge: its conceptual clusters, thematic emphases,
+evidence quality distribution, and structural gaps. Our primary contribution is a structured account
+of what nearly four years of rapid scholarship has established, with what confidence, and where the
+field must go next. The corpus and pipeline code are deposited in an open repository~\cite{sok_repo}.
+
+Four research questions guide this SoK. \textbf{RQ1}: What is the bibliometric landscape of
+GenAI-in-assessment research within engineering, STEM, and computing education from 2022 to
+mid-2026? \textbf{RQ2}: What thematic clusters emerge from keyword co-occurrence analysis?
+\textbf{RQ3}: What is the distribution and evidence quality of research across a seven-category
+taxonomy? \textbf{RQ4}: What cross-cutting patterns and priority gaps emerge from integrating
+both pipelines? Section~\ref{sec:method} describes the methodology; Section~\ref{sec:corpus}
+presents corpus characterisation; Section~\ref{sec:taxonomy} delivers the SoK taxonomy synthesis;
+Sections~\ref{sec:crosscut} and~\ref{sec:gaps} present cross-cutting findings and the gap map;
+Sections~\ref{sec:implications}--\ref{sec:conclusion} cover implications, limitations, and
+conclusions.
+
+% ── II. Methodology ───────────────────────────────────────────────────────────
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Search Strategy}
+
+A multi-database search was conducted in June 2026 across Scopus, Web of Science~(WoS), IEEE
+Xplore, ACM Digital Library, and ERIC. The search string combined generative AI terms
+(\textit{generative AI, ChatGPT, large language models, LLM, GPT}) with assessment-related
+terms (\textit{assessment, grading, evaluation, academic integrity, feedback}) and discipline
+scope (\textit{engineering education, STEM, computing education, computer science education}).
+The temporal window was 2022 to mid-2026. No language restriction was applied at search; all
+non-English papers were excluded at full-text review.
+
+\subsection{PRISMA-Aligned Screening}
+
+A total of 2,766 records were retrieved prior to deduplication. After removing 604
+cross-database duplicates (DOI- and title-based matching), 2,162 unique records were screened
+on title and abstract. Inclusion required substantive engagement with GenAI in at least one of:
+(i)~any component of the assessment cycle; (ii)~assessment redesign in response to GenAI;
+(iii)~academic integrity implications; or (iv)~student or instructor perceptions of GenAI in
+assessment contexts. After two-stage screening (automated keyword screening followed by manual
+review of 59 uncertain cases), 641 papers were retained:
+\[
+2{,}766 \xrightarrow{-604} 2{,}162 \xrightarrow{-1{,}517} 645 \xrightarrow{-4} 641
+\]
+
+\subsection{Dual-Pipeline Analysis}
+
+\textit{Pipeline~1} (bibliometric analysis) used the \texttt{bibliometrix} R package~\cite{aria2017}
+on a merged five-database dataset. IEEE Xplore, ACM, and ERIC BibTeX exports were first normalised
+to Scopus-compatible format via a custom Python script before loading. Author affiliation data absent
+from IEEE/ACM/ERIC exports was retrospectively enriched via the OpenAlex API, achieving 96.9\%
+coverage (947/977 records with DOIs). Analyses included annual production trends, venue and author
+productivity, country collaboration networks, and keyword co-occurrence mapping.
+
+\textit{Pipeline~2} (content analysis) extracted full text from 617 PDFs using PyMuPDF, then
+applied keyword-based thematic coding across seven predefined categories. Papers could be assigned
+to multiple categories, yielding co-occurrence rates rather than exclusive classification. The two
+pipelines are analytically independent: convergence between them strengthens findings; divergence
+identifies areas requiring deeper investigation.
+
+% ── III. Corpus Characterisation ──────────────────────────────────────────────
+\section{Corpus Characterisation (RQ1 and RQ2)}
+\label{sec:corpus}
+
+\subsection{Growth and Scope}
+
+The five-database corpus of 2,122 records reveals a dramatic growth trajectory (Table~\ref{tab:annual}).
+Annual output rose from a near-zero baseline of 2 papers in 2022 to 1,054 in 2025, a compounded
+annual growth rate of 296.6\%. The 2026 partial count of 495 papers to mid-year suggests the
+trajectory is sustained. The document average age of 1.09 years confirms the extreme recency of the
+field, and the average citation count of 2.38 per document reflects the characteristic low-citation
+state of an emerging literature yet to accumulate referencing density. Conference papers dominate
+(71.3\%; $n{=}1{,}513$), with articles (17.0\%) and proceedings papers (9.0\%) comprising the
+remainder.
+
+\begin{table}[ht]
+\caption{Annual Publication Volume --- All Five Databases ($N = 2{,}122$)}
+\label{tab:annual}
+\centering
+\begin{tabular}{crrr}
+\toprule
+\textbf{Year} & \textbf{Papers} & \textbf{YoY Growth} & \textbf{Cumulative} \\
+\midrule
+2022 & 2     & ---       & 2     \\
+2023 & 114   & +5,600\%* & 116   \\
+2024 & 457   & +301\%    & 573   \\
+2025 & 1,054 & +131\%    & 1,627 \\
+2026\dag & 495 & (partial) & 2,122 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize * 2022 baseline of 2 inflates figure. CAGR (2022--2025)~=~296.6\%.}\\
+\multicolumn{4}{l}{\footnotesize \dag To mid-2026 only.}
+\end{tabular}
+\end{table}
+
+\subsection{Venue and Author Landscape}
+
+The corpus spans 777 unique sources, yet publication is concentrated: the top five venues account
+for 11.3\% of records. ASEE Annual Conference proceedings lead with 61 papers, followed by the
+ACM SIGCSE Technical Symposium (47 and 45 papers across its 2025 and 2026 editions),
+Frontiers in Education Conference~(43), and Lecture Notes in Networks and Systems~(43). The
+ACM SIGCSE symposium---substantially undercounted in Scopus/WoS-only analyses---represents a
+key computing education venue that the five-database approach recovers. The most productive
+author is Paul Denny~(51 papers), with Juho Leinonen~(35), Stephen MacNeil~(24), James
+Prather~(21), and Chen~Y~(20) following. The most-cited paper is Bahroun et al.~\cite{bahroun2023}
+in \textit{Sustainability} (a broad ChatGPT-in-education review; 361 citations), with Nikolic
+et al.~\cite{nikolic2023} in the \textit{European Journal of Engineering Education}~(173
+citations) as the most-cited engineering-specific work.
+
+\subsection{Geographic Distribution}
+
+The United States accounts for the largest share of publications~(18.8\%), followed by
+China~(15.2\%), India~(5.0\%), the United Kingdom~(4.0\%), and Australia~(3.9\%). International
+co-authorship stands at 9.9\% of documents---substantially higher than earlier Scopus/WoS-only
+estimates once IEEE and ACM affiliation data is enriched via OpenAlex. The mean co-author count
+of 3.89 per document is consistent with engineering education norms. Citation impact by country
+shows UAE~(avg.\ 81.0 citations/paper), Sweden~(21.8), and New Zealand~(16.9) producing the
+most highly cited papers, suggesting foundational contributions from smaller research communities.
+
+\subsection{Keyword Co-occurrence Clusters (RQ2)}
+
+Keyword co-occurrence mapping of the merged five-database corpus identified four primary clusters
+(Table~\ref{tab:clusters}). Total co-occurrences sum across author keyword~(DE) and Keywords
+Plus~(ID) fields within each cluster.
+
+\begin{table}[ht]
+\caption{Keyword Co-occurrence Clusters}
+\label{tab:clusters}
+\centering
+\begin{tabular}{clr}
+\toprule
+\textbf{\#} & \textbf{Cluster Label} & \textbf{Co-occ.} \\
+\midrule
+1 & Disciplinary Contexts       & 1,681 \\
+2 & GenAI / Assessment Discourse & 1,662 \\
+3 & LLM Applications in Education & 1,417 \\
+4 & CS / Computing Pedagogy     & 987   \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cluster~1 (\textit{Disciplinary Contexts}; 1,681) functions as a structural backdrop, linking
+disciplinary homes (engineering, CS, STEM), pedagogical structures (e-learning, educational
+technology), and normative frameworks (ethics) to the GenAI phenomenon. Cluster~2
+(\textit{GenAI/Assessment Discourse}; 1,662) is the dominant discursive hub---combining the
+technology labels (\textit{generative ai, chatgpt}) with assessment concerns (\textit{academic
+integrity, higher education})---representing the problem space of the literature. Cluster~3
+(\textit{LLM Applications}; 1,417) groups LLM capabilities with educational applications: prompt
+engineering, automated grading, feedback generation, and personalised learning. Cluster~4
+(\textit{CS/Computing Pedagogy}; 987) reflects the sub-field most active in LLM research---
+introductory computing education, CS1 course pedagogy, and programming assessment---whose
+distinctness from Cluster~3 reflects a disciplinary framing rather than a general educational
+technology one.
+
+% ── IV. Taxonomy and Evidence Synthesis ───────────────────────────────────────
+\section{Taxonomy and Evidence Synthesis (RQ3)}
+\label{sec:taxonomy}
+
+Full-text extraction and thematic coding of 617~PDFs produced a seven-category taxonomy
+(Table~\ref{tab:taxonomy}). For each category we summarise \textit{what the literature
+establishes}, \textit{the quality of evidence}, and \textit{the critical gap}. Categories are
+ordered from least (A) to most (G) prevalent to highlight where thinner coverage coincides with
+higher practical urgency.
+
+\begin{table*}[ht]
+\caption{Seven-Category SoK Taxonomy --- Distribution and Evidence Quality ($N = 617$ coded papers)}
+\label{tab:taxonomy}
+\centering
+\begin{tabular}{clrrp{6.8cm}}
+\toprule
+\textbf{Cat.} & \textbf{Theme} & \textbf{Papers} & \textbf{\%} & \textbf{Evidence Quality} \\
+\midrule
+A & Automated Grading              & 290 & 47.0\% & Moderate --- small-$n$ empirical studies; limited validity analysis \\
+B & Authentic Assessment Redesign  & 277 & 44.9\% & Low --- predominantly conceptual/framework; few evaluations \\
+C & Academic Integrity             & 430 & 69.7\% & Moderate --- detection studies; cross-sectional policy surveys \\
+D & Formative and Adaptive Assessment & 439 & 71.2\% & Moderate--High --- controlled studies in ITS and CS1 contexts \\
+E & Ethics and Policy              & 557 & 90.3\% & Low --- framework/opinion dominant; sparse empirical work \\
+F & Perception and Affect          & 572 & 92.7\% & Moderate --- survey-heavy; largely cross-sectional \\
+G & Review / Methodology           & 577 & 93.5\% & N/A --- methodological marker; near-universal rate \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Categories are not mutually exclusive; percentages reflect papers assigned to each.}
+\end{tabular}
+\end{table*}
+
+\subsection{Category A: Automated Grading (47.0\%; $n = 290$)}
+
+\textit{What the literature establishes.}
+LLMs can evaluate programming assignments, essays, and short structured answers with moderate
+reliability. Studies using GPT-4 class models report human--AI grader agreement rates of
+approximately 70--85\% for rubric-based, low-ambiguity tasks and substantially lower agreement
+for open-ended design reasoning. AI feedback tends toward verbosity and generality unless prompts
+are calibrated with rubric-specific criteria. Concerns about hallucinated justifications in written
+feedback remain active. The most prominent research cluster in this area (Denny, Leinonen, MacNeil,
+Savelka, Prather) focuses on code grading and code explanation tasks~\cite{macneil2023,savelka2023}.
+
+\textit{Evidence quality: Moderate.}
+The empirical base includes human--AI agreement studies against instructor grades as ground truth,
+but most studies use convenience samples from single courses ($n < 150$), deploy controlled scenarios
+rather than live submissions, and measure agreement without addressing validity or fairness.
+
+\textit{Critical gap.}
+No large-scale validity or fairness study has been published for automated grading in engineering
+or computing education. The field lacks agreed thresholds for acceptable human--AI agreement for
+formative versus summative purposes. Longitudinal data on student learning outcomes when AI grading
+replaces human grading is entirely absent.
+
+\subsection{Category B: Authentic Assessment Redesign (44.9\%; $n = 277$)}
+
+\textit{What the literature establishes.}
+Two broad design philosophies have emerged. \textit{AI-resistant design} employs formats that GenAI
+cannot plausibly complete---synchronous in-person examinations, viva voce oral defences, and
+reflective journals requiring verifiable personal experience. \textit{AI-integrated design} explicitly
+incorporates AI use, assessed on process rather than product. Artefact-plus-reflection formats,
+process portfolios, and live demonstrations are the most commonly proposed implementations. Bloom's
+taxonomy reframing is a recurring motif: shift assessment emphasis toward synthesis, evaluation, and
+creative design that AI performs less well than recall and application.
+
+\textit{Evidence quality: Low.}
+The dominant publication type is conceptual or framework-based: proposed redesign models, opinion
+pieces, and institutional case narratives. Controlled comparisons between AI-resistant and AI-integrated
+designs---and between either and baseline assessment---are almost entirely absent.
+
+\textit{Critical gap.}
+No published study directly compares learning outcomes under AI-resistant versus AI-integrated
+assessment in engineering or computing education. Scalability of high-authenticity formats in large
+cohorts remains empirically unaddressed.
+
+\subsection{Category C: Academic Integrity (69.7\%; $n = 430$)}
+
+\textit{What the literature establishes.}
+AI detection tools (Turnitin AI, GPTZero, Copyleaks) show false positive rates of 8--20\% in
+controlled studies, with substantially higher misclassification for non-native English speakers.
+Detection-as-policy is widely critiqued as an arms race. Drawing on contract cheating research
+predating GenAI, the more productive literature finds that institutional culture, task design, and
+policy communication matter more than technical detection. Student attitudes toward disclosure are
+more cooperative than commonly assumed when clear guidance and proportionate penalties exist.
+
+\textit{Evidence quality: Moderate, but uneven.}
+Detection tool studies have quantitative metrics but suffer from controlled-condition design (ground
+truth AI text versus human text, rather than real hybrid-use submissions). Policy surveys provide
+cross-institutional coverage but are cross-sectional. Student self-report data on AI use is susceptible
+to social desirability bias.
+
+\textit{Critical gap.}
+No longitudinal dataset tracks actual integrity violation rates before and after institutional policy
+interventions. The differential impact of AI detection systems on non-native English speakers has
+been identified but not addressed with intervention research.
+
+\subsection{Category D: Formative and Adaptive Assessment (71.2\%; $n = 439$)}
+
+\textit{What the literature establishes.}
+This is the category with the most developed empirical base, drawing on decades of intelligent
+tutoring system~(ITS) research. LLM integration into formative loops enables personalised hints,
+Socratic questioning, and immediate explanatory feedback on code, mathematics, and engineering
+problem steps. CS1 and introductory programming contexts dominate. Controlled studies report
+measurable short-term learning gains on targeted skills. Concurrently, the literature identifies a
+risk of learned helplessness when students receive immediate AI hints without productive struggle.
+
+\textit{Evidence quality: Moderate to High.}
+The ITS lineage provides a rigorous methodological baseline; several papers report controlled
+experiments with pre-post designs or comparable control groups. The limitation is ecological validity:
+most studies are in introductory programming with motivated participants, and study durations rarely
+exceed one semester.
+
+\textit{Critical gap.}
+Long-term retention and transfer from LLM-based formative feedback are unstudied. Comparative
+evaluation of human-in-the-loop versus fully automated formative systems is needed. Applications
+beyond introductory computing---into engineering design critique and upper-division STEM---represent
+an underexplored deployment space.
+
+\subsection{Category E: Ethics and Policy (90.3\%; $n = 557$)}
+
+\textit{What the literature establishes.}
+Near-universal engagement with ethics and policy is a defining characteristic of this field. Recurring
+concerns include bias and fairness in AI grading, transparency, data privacy, environmental costs of
+LLM deployment, and equity of access to premium AI tools. Multiple frameworks have been proposed at
+institutional, national, and international levels (UNESCO, ACM, IEEE). The equity dimension is
+particularly prominent: unequal access to GPT-4 versus free-tier models creates assessment conditions
+that differ across socioeconomic groups.
+
+\textit{Evidence quality: Low.}
+The vast majority of ethics and policy papers are conceptual, framework-based, or opinion pieces.
+Empirical ethics research---measuring the actual magnitude of AI grading bias or quantifying the
+equity impact of tool access differentials---is sparse.
+
+\textit{Critical gap.}
+Policy effectiveness research is almost entirely absent: no published study tracks whether a specific
+institutional AI policy (ban, allow with disclosure, AI-integrated) produces different learning or
+integrity outcomes over time. Cross-national comparative policy analysis has not appeared in this
+corpus despite frequent advocacy for it.
+
+\subsection{Category F: Perception and Affect (92.7\%; $n = 572$)}
+
+\textit{What the literature establishes.}
+Students are, on average, more positive toward GenAI in assessment contexts than instructors, but
+attitudes are neither uniform nor stable. A consistent finding is attitudinal bifurcation: enthusiasm
+for efficiency gains coexists with anxiety about dependency and skills atrophy. Cultural variation is
+significant---East Asian student samples show stronger concern about integrity norms; Western samples
+more readily frame GenAI as a neutral tool. AI-related anxiety correlates with lower academic
+self-efficacy. Initial enthusiasm moderates with sustained use as limitations become apparent.
+
+\textit{Evidence quality: Moderate.}
+Approximately 76\% of perception papers use questionnaire methods. The literature is overwhelmingly
+cross-sectional. Validated instruments are emerging (AI Attitude Scale variants) but no standardised
+instrument has achieved consensus, making cross-study comparison unreliable.
+
+\textit{Critical gap.}
+Longitudinal tracking of attitude change across a full academic year---as students and instructors
+gain sustained experience---is absent. The relationship between perception and learning outcomes is
+essentially unstudied. Cross-cultural comparative studies using equivalent instruments are needed.
+
+\subsection{Category G: Review / Methodology (93.5\%; $n = 577$)}
+
+This category warrants special interpretation. Its near-universal prevalence reflects the breadth of
+keyword matching rather than a distinct substantive research area. Substantively, the most important
+observation is that the field is self-aware of its proliferation---multiple bibliometric and systematic
+reviews have been published within the corpus window itself. This recursive dynamic points to a
+community actively constructing knowledge-management infrastructure in real time. No dominant study
+design has emerged; the corpus mixes surveys, case studies, quasi-experiments, and technology
+demonstrations, with randomised controlled trials representing fewer than 5\% of empirical papers.
+
+% ── V. Cross-Cutting Findings ─────────────────────────────────────────────────
+\section{Cross-Cutting Findings (RQ4)}
+\label{sec:crosscut}
+
+\textbf{The diagnosis-to-intervention gap.}
+The most consistent finding across both pipelines is a structural gap between diagnostic and
+interventional research. Categories with highest coverage (E, F) are precisely those characterised
+by the lowest evidence quality. Categories with highest practical urgency and most developed empirical
+traditions (A, D) show lower overall prevalence but stronger study designs. This inversion---abundant
+low-quality coverage of concerns, sparse high-quality evaluation of solutions---is characteristic of
+fields responding to rapid disruptive change but creates a genuine gap between the literature's volume
+and its actionability.
+
+\textbf{Methodological homogeneity.}
+Across the taxonomy, survey-based and conceptual/framework methodologies dominate. This produces a
+literature rich in documented perceptions and proposed frameworks but thin on controlled evaluation
+of implementation outcomes. Computing education shows the most methodological diversity and the most
+controlled studies, reflecting its longer tradition of education research. The field would benefit from
+longer-term naturalistic studies, quasi-experimental designs exploiting natural variation in institutional
+policies, and mixed-methods longitudinal work linking attitude data to outcome data.
+
+\textbf{Disciplinary unevenness.}
+Computing education drives a disproportionate share of the empirical and intervention literature,
+reflecting ACM Digital Library coverage, methodological tradition, and the direct alignment between LLM
+capabilities and computing assessment artefacts. Engineering and broader STEM contexts are
+underrepresented in the high-impact citation tier despite inclusion in the search strategy. The Asia-Pacific
+region, though contributing significantly to publication volume, is underrepresented in the most-cited work.
+
+\textbf{The AI-proofing versus AI-integration debate.}
+A recurring conceptual tension---particularly pronounced in categories~B and~E---is whether educational
+response to GenAI should focus on AI-resistant assessment or redesigning assessments to incorporate AI
+as a legitimate tool. The literature does not resolve this tension empirically; both positions are
+represented by framework papers and institutional case studies without comparative outcome data.
+
+% ── VI. Gap Map ───────────────────────────────────────────────────────────────
+\section{Gap Map and Research Agenda}
+\label{sec:gaps}
+
+Table~\ref{tab:gaps} maps priority research gaps identified through the SoK synthesis. Gaps are
+categorised by urgency (the practical or theoretical cost of the knowledge absent) and feasibility
+(whether the gap can be addressed with currently available methodology and data). High
+urgency / high feasibility gaps represent the most actionable priorities for the next research cycle.
+
+\begin{table*}[ht]
+\caption{Priority Research Gap Map}
+\label{tab:gaps}
+\centering
+\begin{tabular}{p{2.4cm}p{8.2cm}cc}
+\toprule
+\textbf{Category} & \textbf{Gap} & \textbf{Urgency} & \textbf{Feasibility} \\
+\midrule
+Automated Grading (A)
+  & Validity and fairness standards for AI grading across demographic groups
+  & High & High \\
+Automated Grading (A)
+  & Longitudinal learning outcomes under AI vs.\ human grading
+  & High & Medium \\
+Authentic Redesign (B)
+  & Controlled comparison of AI-resistant vs.\ AI-integrated designs on learning outcomes
+  & High & Medium \\
+Authentic Redesign (B)
+  & Scalability of oral examination formats in large engineering cohorts
+  & High & High \\
+Academic Integrity (C)
+  & Longitudinal integrity violation rates before/after institutional policy changes
+  & High & Medium \\
+Academic Integrity (C)
+  & Fairness of AI detection systems across student language backgrounds
+  & High & High \\
+Formative / Adaptive (D)
+  & Long-term retention and transfer from LLM-based formative feedback
+  & High & Medium \\
+Formative / Adaptive (D)
+  & LLM formative assessment in engineering design and upper-division STEM
+  & Medium & High \\
+Ethics / Policy (E)
+  & Policy effectiveness evaluation: which institutional AI policies improve outcomes?
+  & High & Medium \\
+Ethics / Policy (E)
+  & Cross-national comparative analysis of institutional policy responses
+  & Medium & High \\
+Perception / Affect (F)
+  & Longitudinal attitude change over a full academic year of GenAI use
+  & Medium & High \\
+Perception / Affect (F)
+  & Cross-cultural comparative studies with standardised instruments
+  & Medium & High \\
+Cross-cutting
+  & Equity impact of unequal AI tool access on assessment outcomes
+  & High & Medium \\
+Cross-cutting
+  & Non-Western educational context representation in empirical studies
+  & Medium & High \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ── VII. Implications ─────────────────────────────────────────────────────────
+\section{Implications}
+\label{sec:implications}
+
+\subsection{For Assessment Designers and Instructors}
+
+The taxonomy synthesis supports four evidence-grounded design principles.
+\textit{First}, formative AI feedback~(Category~D) has the strongest empirical base and can be
+adopted with confidence for introductory-level tasks in computing and STEM, provided that
+productive struggle time is preserved and learned helplessness is monitored.
+\textit{Second}, process-based assessment components---reflection prompts, design process
+documentation, viva elements---are the most consistently advocated AI-integration strategy~(B),
+though instructors adopting these designs should document outcomes to contribute to the emerging
+evidence base.
+\textit{Third}, AI detection tools should not be the primary integrity mechanism~(C); task
+redesign, policy clarity, and disclosure culture are more effective.
+\textit{Fourth}, student perception data~(F) confirms that clear, proportionate, and
+student-co-designed AI use policies reduce anxiety and improve disclosure rates.
+
+\subsection{For Institutions and Policymakers}
+
+The near-universal engagement with ethics and policy~(E) without accompanying effectiveness data
+represents an accountability gap: institutions are publishing AI policies without evaluating their
+outcomes. This SoK recommends that institutions treat their AI policies as researchable
+interventions---documenting the policy, rationale, and measured outcomes over at least one academic
+year. The geographic concentration of the literature means that policies developed in large US
+research university contexts may not transfer to smaller institutions, community colleges, or
+non-Western systems. IEEE TALE, with its Asia-Pacific focus, is well positioned to address this
+gap. The equity concern about unequal access to premium AI tools requires immediate institutional
+response: where AI tool access is permitted in assessment, institutions should either provide
+equitable access or explicitly account for tool access differences in assessment design.
+
+\subsection{For Researchers}
+
+Table~\ref{tab:gaps} identifies fourteen priority research directions. The highest combined urgency
+and feasibility targets are: automated grading validity and fairness studies~(A), detection system
+fairness for non-native English speakers~(C), scalability of oral examination formats in large
+cohorts~(B), and longitudinal attitude studies~(F). These can all be addressed with existing
+methodology and data sources. The field would benefit from pre-registration of studies addressing
+high-stakes outcomes (integrity violation rates, learning gains from formative feedback). Researchers
+in non-Western contexts---particularly Asia-Pacific, South Asia, and Latin America---are encouraged
+to contribute to the comparative literature that is currently underrepresented in this corpus.
+
+% ── VIII. Limitations ────────────────────────────────────────────────────────
+\section{Limitations}
+\label{sec:limitations}
+
+Several limitations should qualify interpretation of these findings. The keyword-based taxonomy
+captures thematic \textit{presence}, not depth of treatment; a paper assigned to Category~E may
+engage with ethics as a central concern or as a passing acknowledgement. Category~G's near-universal
+rate partly reflects its design as a broad methodological marker. Future work should apply LLM-based
+per-paper primary-category classification to produce a more discriminative taxonomy. The
+international co-authorship figure~(9.9\%) now reflects OpenAlex-enriched affiliations for 96.9\%
+of IEEE/ACM/ERIC records, but the 3.1\% lacking enriched affiliations may introduce minor undercount.
+The 24 papers for which PDFs were not retrievable introduce a small content analysis exclusion bias
+in Pipeline~2. Finally, the rapid evolution of the field means that any corpus assembled to mid-2026
+will be immediately superseded; the open reproducible pipeline is designed for incremental update,
+and the GitHub repository~\cite{sok_repo} provides infrastructure for future corpus extension.
+
+% ── IX. Conclusion ────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper presents a Systematization of Knowledge review of the GenAI-in-assessment literature
+within engineering, STEM, and computing education, drawing on 641~papers (617 full-text coded)
+with bibliometric analysis spanning 2,122 deduplicated records from five databases. The field has
+grown at 296.6\% per annum---approximately~$9\times$ from 2023 to 2025---dominated by conference
+publications and geographically concentrated in the United States and China. Keyword co-occurrence
+analysis identifies four thematic clusters: Disciplinary Contexts, GenAI/Assessment Discourse, LLM
+Applications in Education, and CS/Computing Pedagogy.
+
+The seven-category taxonomy reveals that diagnostic and normative work accounts for the preponderance
+of publications, while implementation and controlled evaluation of assessment interventions remains
+comparatively sparse. The central SoK contribution is the evidence quality mapping: Formative and
+Adaptive Assessment~(D) has the most developed empirical base and is ready for evidence-based
+adoption; Automated Grading~(A) requires validity and fairness work before high-stakes deployment;
+Ethics/Policy~(E) and Authentic Redesign~(B) lack sufficient empirical foundations to support
+confident practice recommendations. Fourteen priority gaps are identified, with automated grading
+validity, AI-integrated assessment evaluation, detection fairness for non-native speakers, and
+cross-national equity studies as the highest-urgency actionable targets. The reproducible dual-pipeline
+infrastructure and open corpus~\cite{sok_repo} provide a reusable foundation for updating this
+synthesis as the literature continues to evolve.
+
+% ── References ────────────────────────────────────────────────────────────────
+\bibliographystyle{IEEEtran}
+\bibliography{tale2026_sok_paper}
+
+\end{document}
