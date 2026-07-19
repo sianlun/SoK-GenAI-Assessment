@@ -31,6 +31,9 @@ pipeline2_analysis/outputs/tables/fulltext_extracts.jsonl
 # Merged RDS (3MB, regenerate with 01_load_and_merge.R)
 data/processed/bibliometrix_merged.rds
 
+# -- publication manuscript
+docs/
+
 # ── macOS metadata ─────────────────────────────────────────────────────────────
 .DS_Store
 ._*
