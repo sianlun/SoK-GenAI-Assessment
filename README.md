@@ -64,11 +64,6 @@ SoK-GenAI-Assessment/
 │       ├── figures/                       # Generated plots (PNG)
 │       └── tables/                        # Generated CSV/TXT tables
 │
-├── docs/
-│   ├── retrieval_process.docx             # Full PRISMA-aligned retrieval narrative
-│   ├── CORPUS.md                          # Human-readable corpus list
-│   └── springer_needed.md                 # Remaining Springer papers with OA links
-│
 └── _pdfs/                                 # PDF corpus — GITIGNORED (617 files, ~3 GB)
 ```
 
