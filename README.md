@@ -1,9 +1,8 @@
 # SoK: Generative AI in Assessment — Engineering, STEM & CS Education
 
-Systematization of Knowledge (SoK) review repository.  
-**Venue:** IEEE TALE 2026 — Assessment Revolution track.
+Systematization of Knowledge (SoK) review repository.
 
-> Lau, S. L. (2026). *Generative AI in Assessment within Engineering, STEM, and Computing Education: A Systematization of Knowledge.* Proceedings of IEEE TALE 2026.
+> Lau, S. L. (2026). *Generative AI in Assessment within Engineering, STEM, and Computing Education: A Systematization of Knowledge.* <!-- Citation will be updated upon acceptance. -->
 
 This repository contains the **input data and analysis code** needed to reproduce the findings reported in the paper. PDF retrieval is not included; obtain papers via your institutional subscriptions using DOIs in `data/processed/corpus_final.json`.
 
@@ -177,13 +176,14 @@ All counts are **consensus-only** (both rounds agree). Category G is a methodolo
 
 ## Citation
 
+> **Note:** Citation will be updated upon acceptance and publication.
+
 ```bibtex
-@inproceedings{lau2026tale,
-  author    = {Lau, Sian Lun},
-  title     = {Generative {AI} in Assessment within Engineering, {STEM}, and
-               Computing Education: A Systematization of Knowledge},
-  booktitle = {Proceedings of IEEE International Conference on Teaching,
-               Assessment, and Learning for Engineering (TALE 2026)},
-  year      = {2026},
+@article{lau2026sok,
+  author = {Lau, Sian Lun},
+  title  = {Generative {AI} in Assessment within Engineering, {STEM}, and
+            Computing Education: A Systematization of Knowledge},
+  year   = {2026},
+  note   = {Under review},
 }
 ```
