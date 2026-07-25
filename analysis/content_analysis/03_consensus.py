@@ -12,12 +12,12 @@ The CONFIRMED counts are what should be reported in Table III of the paper.
 The agreement rate per category is reported in the methodology section.
 
 Outputs:
-  pipeline2_analysis/outputs/tables/taxonomy_consensus.csv
+  analysis/outputs/tables/taxonomy_consensus.csv
       — per-category: R1 count, R2 count, consensus count, disputed counts,
         agreement rate, consensus %
-  pipeline2_analysis/outputs/tables/taxonomy_disagreements.csv
+  analysis/outputs/tables/taxonomy_disagreements.csv
       — one row per (paper × category) disagreement for manual inspection
-  pipeline2_analysis/outputs/tables/consensus_summary.txt
+  analysis/outputs/tables/consensus_summary.txt
       — human-readable table for copying into the paper
 
 Requirements: pip install pandas
@@ -27,7 +27,7 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-OUT  = ROOT / "pipeline2_analysis" / "outputs" / "tables"
+OUT  = ROOT / "analysis" / "outputs" / "tables"
 
 CATEGORIES = [
     "A_automated_grading",

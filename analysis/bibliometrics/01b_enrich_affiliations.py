@@ -8,7 +8,7 @@ RESUMABLE: Progress is checkpointed to affiliations_enriched.csv after every
 SAVE_EVERY records. If interrupted, re-running skips already-processed DOIs.
 
 Usage:
-  python3 pipeline2_analysis/bibliometrics/01b_enrich_affiliations.py
+  python3 analysis/bibliometrics/01b_enrich_affiliations.py
 
 Set OPENALEX_EMAIL env var or edit EMAIL below for the polite pool (100 req/s).
 Default (no email): 10 req/s.
@@ -18,7 +18,7 @@ Output:
   data/processed/affiliations_enrichment_log.json
 
 Next step:
-  Rscript pipeline2_analysis/bibliometrics/01c_apply_affiliations.R
+  Rscript analysis/bibliometrics/01c_apply_affiliations.R
 """
 
 import os
@@ -230,4 +230,4 @@ if total_done < len(target):
     print(f"\n  {remaining} records still pending — re-run to continue.")
 else:
     print("\n  All records processed.")
-    print("  Next: Rscript pipeline2_analysis/bibliometrics/01c_apply_affiliations.R")
+    print("  Next: Rscript analysis/bibliometrics/01c_apply_affiliations.R")

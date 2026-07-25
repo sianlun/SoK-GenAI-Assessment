@@ -16,9 +16,9 @@ This repository contains the **input data and analysis code** needed to reproduc
 | `data/raw/` | Original BibTeX exports from all 5 databases |
 | `data/processed/corpus_final.json` | 641-paper final corpus (title, authors, year, DOI, filename) |
 | `data/processed/affiliations_enriched.csv` | OpenAlex-enriched author affiliations for IEEE/ACM/ERIC records |
-| `pipeline2_analysis/bibliometrics/` | R + Python scripts for bibliometric analysis |
-| `pipeline2_analysis/content_analysis/` | Dual-round taxonomy coding scripts |
-| `pipeline2_analysis/outputs/` | Generated figures and tables (populated after running) |
+| `analysis/bibliometrics/` | R + Python scripts for bibliometric analysis |
+| `analysis/content_analysis/` | Dual-round taxonomy coding scripts |
+| `analysis/outputs/` | Generated figures and tables (populated after running) |
 
 **Not included:** `_pdfs/` (~3 GB, 617 files) — retrieve using DOIs in `corpus_final.json`.
 
@@ -41,7 +41,7 @@ SoK-GenAI-Assessment/
 │       ├── corpus_final.json               # 641-paper authoritative corpus
 │       └── affiliations_enriched.csv       # OpenAlex affiliation enrichment
 │
-├── pipeline2_analysis/
+├── analysis/
 │   ├── bibliometrics/
 │   │   ├── 00_normalize_bib.py             # Normalise IEEE/ACM/ERIC BibTeX → Scopus format
 │   │   ├── 01_load_and_merge.R             # Load 5 databases, merge, deduplicate
@@ -95,11 +95,11 @@ Place the 641 PDFs in `_pdfs/` (filenames match `corpus_final.json → filename`
 
 ```bash
 # Normalise IEEE/ACM/ERIC BibTeX to Scopus-compatible format
-python3 pipeline2_analysis/bibliometrics/00_normalize_bib.py
+python3 analysis/bibliometrics/00_normalize_bib.py
 # → data/raw/ieee_acm_eric_normalized.bib
 
 # Load all 5 databases, merge and deduplicate (2,122 records)
-Rscript pipeline2_analysis/bibliometrics/01_load_and_merge.R
+Rscript analysis/bibliometrics/01_load_and_merge.R
 # → data/processed/bibliometrix_merged.rds
 
 # Export for affiliation enrichment
@@ -107,16 +107,16 @@ Rscript -e 'write.csv(readRDS("data/processed/bibliometrix_merged.rds"),
             "data/processed/bibliometrix_merged.csv", row.names=FALSE)'
 
 # Enrich author affiliations via OpenAlex API (resumable — safe to interrupt)
-python3 pipeline2_analysis/bibliometrics/01b_enrich_affiliations.py
+python3 analysis/bibliometrics/01b_enrich_affiliations.py
 # → data/processed/affiliations_enriched.csv
 
 # Apply enriched affiliations
-Rscript pipeline2_analysis/bibliometrics/01c_apply_affiliations.R
+Rscript analysis/bibliometrics/01c_apply_affiliations.R
 
 # Generate all figures and tables
-Rscript pipeline2_analysis/bibliometrics/02_bibliometric_analysis.R
-# → pipeline2_analysis/outputs/figures/*.png
-# → pipeline2_analysis/outputs/tables/*.csv
+Rscript analysis/bibliometrics/02_bibliometric_analysis.R
+# → analysis/outputs/figures/*.png
+# → analysis/outputs/tables/*.csv
 ```
 
 ### Step 2 — Dual-round taxonomy coding
@@ -133,18 +133,18 @@ Two independent rounds code the same 617-paper corpus. Only papers assigned by *
 
 ```bash
 # Round 1
-python3 pipeline2_analysis/content_analysis/01_text_extraction.py
-python3 pipeline2_analysis/content_analysis/02_thematic_coding.py
+python3 analysis/content_analysis/01_text_extraction.py
+python3 analysis/content_analysis/02_thematic_coding.py
 
 # Round 2
-python3 pipeline2_analysis/content_analysis/01b_text_extraction_alt.py
-python3 pipeline2_analysis/content_analysis/02b_thematic_coding_alt.py
+python3 analysis/content_analysis/01b_text_extraction_alt.py
+python3 analysis/content_analysis/02b_thematic_coding_alt.py
 
 # Consensus (reported counts + per-category agreement rates)
-python3 pipeline2_analysis/content_analysis/03_consensus.py
-# → pipeline2_analysis/outputs/tables/consensus_summary.txt
-# → pipeline2_analysis/outputs/tables/taxonomy_consensus.csv
-# → pipeline2_analysis/outputs/tables/taxonomy_disagreements.csv
+python3 analysis/content_analysis/03_consensus.py
+# → analysis/outputs/tables/consensus_summary.txt
+# → analysis/outputs/tables/taxonomy_consensus.csv
+# → analysis/outputs/tables/taxonomy_disagreements.csv
 ```
 
 ---

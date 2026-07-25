@@ -4,8 +4,8 @@
 #            thematic map — all outputs saved to outputs/
 # ============================================================
 # Input:  data/processed/bibliometrix_merged.rds
-# Output: pipeline2_analysis/outputs/figures/*.png
-#         pipeline2_analysis/outputs/tables/*.csv
+# Output: analysis/outputs/figures/*.png
+#         analysis/outputs/tables/*.csv
 # ============================================================
 
 library(bibliometrix)
@@ -13,8 +13,8 @@ library(tidyverse)
 library(here)
 
 PROC   <- here("data", "processed")
-FIGS   <- here("pipeline2_analysis", "outputs", "figures")
-TABLES <- here("pipeline2_analysis", "outputs", "tables")
+FIGS   <- here("analysis", "outputs", "figures")
+TABLES <- here("analysis", "outputs", "tables")
 dir.create(FIGS,   recursive = TRUE, showWarnings = FALSE)
 dir.create(TABLES, recursive = TRUE, showWarnings = FALSE)
 

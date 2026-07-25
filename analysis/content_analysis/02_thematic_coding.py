@@ -13,8 +13,8 @@ Maps each paper to one or more SoK taxonomy categories:
   G — Foundational / review / methodological
 
 Outputs:
-  pipeline2_analysis/outputs/tables/thematic_coding.csv
-  pipeline2_analysis/outputs/tables/taxonomy_summary.csv
+  analysis/outputs/tables/thematic_coding.csv
+  analysis/outputs/tables/taxonomy_summary.csv
 
 Requirements:
   pip install pandas tqdm
@@ -30,8 +30,8 @@ from tqdm import tqdm
 
 ROOT    = Path(__file__).parent.parent.parent
 CORPUS  = ROOT / "data" / "processed" / "corpus_final.json"
-EXTRACT = ROOT / "pipeline2_analysis" / "outputs" / "tables" / "fulltext_extracts.jsonl"
-OUT     = ROOT / "pipeline2_analysis" / "outputs" / "tables"
+EXTRACT = ROOT / "analysis" / "outputs" / "tables" / "fulltext_extracts.jsonl"
+OUT     = ROOT / "analysis" / "outputs" / "tables"
 
 # ── Taxonomy keyword map ─────────────────────────────────────────────────────
 

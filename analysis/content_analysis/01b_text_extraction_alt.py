@@ -37,7 +37,7 @@ from tqdm import tqdm
 ROOT   = Path(__file__).resolve().parent.parent.parent
 PDFS   = ROOT / "_pdfs"
 CORPUS = ROOT / "data" / "processed" / "corpus_final.json"
-OUT    = ROOT / "pipeline2_analysis" / "outputs" / "tables"
+OUT    = ROOT / "analysis" / "outputs" / "tables"
 OUT.mkdir(parents=True, exist_ok=True)
 
 EXTRACT_FILE = OUT / "fulltext_extracts_alt.jsonl"

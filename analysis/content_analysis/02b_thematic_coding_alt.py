@@ -19,8 +19,8 @@ Run 03_consensus.py after both rounds to compute the consensus taxonomy counts
 that are reported in the paper.
 
 Outputs:
-  pipeline2_analysis/outputs/tables/thematic_coding_alt.csv
-  pipeline2_analysis/outputs/tables/taxonomy_summary_alt.csv
+  analysis/outputs/tables/thematic_coding_alt.csv
+  analysis/outputs/tables/taxonomy_summary_alt.csv
 
 Requirements:
   pip install pandas tqdm
@@ -36,8 +36,8 @@ from tqdm import tqdm
 
 ROOT    = Path(__file__).resolve().parent.parent.parent
 CORPUS  = ROOT / "data" / "processed" / "corpus_final.json"
-EXTRACT = ROOT / "pipeline2_analysis" / "outputs" / "tables" / "fulltext_extracts_alt.jsonl"
-OUT     = ROOT / "pipeline2_analysis" / "outputs" / "tables"
+EXTRACT = ROOT / "analysis" / "outputs" / "tables" / "fulltext_extracts_alt.jsonl"
+OUT     = ROOT / "analysis" / "outputs" / "tables"
 
 # ── Round 2 taxonomy vocabulary ──────────────────────────────────────────────
 # Each entry uses synonyms and paraphrases INDEPENDENT of Round 1's keyword set.

@@ -10,7 +10,7 @@
 #
 # Run 00_normalize_bib.py before this script if the normalised
 # file does not yet exist:
-#   python3 pipeline2_analysis/bibliometrics/00_normalize_bib.py
+#   python3 analysis/bibliometrics/00_normalize_bib.py
 #
 # Input:  data/raw/scopus_1001.bib
 #         data/raw/wos_305.bib

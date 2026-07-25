@@ -4,9 +4,9 @@ Pipeline 2 – Phase 2: Content Analysis
 Script 01: Extract full text from all PDFs in _pdfs/
 
 Outputs:
-  pipeline2_analysis/outputs/tables/fulltext_extracts.jsonl
+  analysis/outputs/tables/fulltext_extracts.jsonl
     — one JSON line per paper: {filename, doi, title, year, text, pages, word_count}
-  pipeline2_analysis/outputs/tables/extraction_report.csv
+  analysis/outputs/tables/extraction_report.csv
 
 Requirements:
   pip install pymupdf tqdm
@@ -23,7 +23,7 @@ from tqdm import tqdm
 ROOT   = Path(__file__).parent.parent.parent
 PDFS   = ROOT / "_pdfs"
 CORPUS = ROOT / "data" / "processed" / "corpus_final.json"
-OUT    = ROOT / "pipeline2_analysis" / "outputs" / "tables"
+OUT    = ROOT / "analysis" / "outputs" / "tables"
 OUT.mkdir(parents=True, exist_ok=True)
 
 EXTRACT_FILE = OUT / "fulltext_extracts.jsonl"
