@@ -35,44 +35,62 @@ OUT     = ROOT / "analysis" / "outputs" / "tables"
 
 # ── Taxonomy keyword map ─────────────────────────────────────────────────────
 
+# ── Vocabulary A (Round 1) ────────────────────────────────────────────────────
+# Design rules:
+#   1. All terms are 2+ word phrases — no single generic words
+#   2. All terms are category-specific: unlikely to appear in papers not about
+#      the topic (e.g. "ethics" is too broad; "ai ethics" is specific)
+#   3. No term appears in Vocabulary B (see 02b_thematic_coding_alt.py)
+#   4. Comparable breadth across categories (~16-18 terms each)
+
 TAXONOMY = {
     "A_automated_grading": [
-        "automated grading", "automatic grading", "auto-grading", "autograding",
-        "automated assessment", "automated marking", "code grading", "programming assignment",
-        "code review", "test case", "unit test", "automated feedback", "autofeedback",
-        "llm grading", "gpt grading", "ai grading", "rubric scoring", "essay scoring",
-        "short answer grading", "automated evaluation", "code evaluation",
+        "automated grading", "automated marking", "automated scoring",
+        "automated feedback", "ai grading", "ai scoring",
+        "ai marking", "llm grading", "gpt grading",
+        "code grading", "programming assessment", "rubric scoring",
+        "essay scoring", "short answer grading", "automated essay scoring",
+        "ai-generated feedback", "grading automation",
     ],
     "B_authentic_assessment": [
-        "authentic assessment", "performance-based", "project-based", "portfolio",
-        "capstone", "design project", "real-world task", "workplace", "competency",
-        "outcome-based", "obe", "problem-based learning", "case study assessment",
-        "lab assessment", "practical assessment", "viva", "oral examination",
+        "authentic assessment", "assessment redesign", "ai-resistant assessment",
+        "oral examination", "oral defence", "oral assessment",
+        "portfolio assessment", "process portfolio", "capstone assessment",
+        "project-based assessment", "problem-based assessment", "performance-based assessment",
+        "ai-integrated assessment", "assessment reform", "assessment transformation",
+        "competency-based assessment", "redesigning assessment",
     ],
     "C_academic_integrity": [
-        "academic integrity", "academic dishonesty", "plagiarism", "ai detection",
-        "chatgpt detection", "gptzero", "turnitin", "contract cheating",
-        "essay mill", "ghostwriting", "misconduct", "honour code", "originality",
-        "authorship", "ai-generated text", "text authenticity", "humanize",
+        "academic integrity", "academic dishonesty", "academic misconduct",
+        "ai detection", "chatgpt detection", "plagiarism detection",
+        "contract cheating", "ai-generated text", "ai content detection",
+        "integrity violation", "cheating detection", "misconduct detection",
+        "ghostwriting detection", "originality check", "ai plagiarism",
+        "honour code", "student misconduct",
     ],
     "D_formative_adaptive": [
-        "formative assessment", "adaptive assessment", "feedback generation",
-        "personalized feedback", "immediate feedback", "chatbot feedback",
-        "ai tutor", "ai teaching assistant", "conversational agent",
-        "intelligent tutoring", "learning analytics", "self-assessment",
-        "peer assessment", "metacognition", "scaffolding",
+        "formative assessment", "formative feedback", "adaptive assessment",
+        "ai tutor", "ai tutoring", "ai teaching assistant",
+        "intelligent tutoring", "personalized feedback", "adaptive feedback",
+        "chatbot feedback", "immediate feedback", "real-time feedback",
+        "on-demand feedback", "learning analytics", "conversational agent",
+        "feedback generation", "ai-powered feedback",
     ],
     "E_ethics_policy": [
-        "ethics", "ethical", "policy", "regulation", "accreditation", "abet",
-        "governance", "bias", "fairness", "equity", "transparency",
-        "explainability", "responsible ai", "ai policy", "institutional policy",
-        "higher education policy", "curriculum policy", "faculty guideline",
+        "ai ethics", "ethical implications", "ethical concerns",
+        "ai policy", "institutional ai policy", "academic ai policy",
+        "ai regulation", "ai governance", "algorithmic bias",
+        "ai fairness", "digital equity", "equitable access",
+        "responsible ai", "data privacy", "student privacy",
+        "ai accountability", "ethics of ai",
     ],
     "F_perception_affect": [
-        "student perception", "faculty perception", "attitude", "trust",
-        "anxiety", "acceptance", "adoption", "tam", "technology acceptance",
-        "engagement", "motivation", "satisfaction", "concern", "awareness",
-        "student experience", "instructor experience",
+        "student perception", "instructor perception", "faculty perception",
+        "student attitude", "instructor attitude", "ai anxiety",
+        "ai acceptance", "ai adoption", "technology acceptance",
+        "ai trust", "student experience", "ai concern",
+        "ai awareness", "student wellbeing", "user experience with ai",
+        "ai apprehension", "attitude toward ai",
     ],
     "G_review_methodology": [
         "systematic review", "literature review", "meta-analysis", "bibliometric",
@@ -83,13 +101,14 @@ TAXONOMY = {
 
 
 def code_text(text: str) -> list[str]:
+    """Assign categories on presence of any single keyword (substring match).
+
+    Uses fast substring search rather than regex. All Vocabulary A terms are
+    2+-word phrases, so substring matching is equivalent without regex overhead.
+    """
     text_lower = text.lower()
-    codes = []
-    for cat, keywords in TAXONOMY.items():
-        for kw in keywords:
-            if re.search(r'\b' + re.escape(kw) + r'\b', text_lower):
-                codes.append(cat)
-                break
+    codes = [cat for cat, keywords in TAXONOMY.items()
+             if any(kw in text_lower for kw in keywords)]
     return codes or ["G_review_methodology"]   # default if no match
 
 

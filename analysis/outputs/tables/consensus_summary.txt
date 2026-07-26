@@ -1,0 +1,19 @@
+================================================================================
+DUAL-ROUND CONSENSUS SUMMARY
+Papers in consensus analysis: 614
+Total (paper × category) disagreements: 1614
+================================================================================
+Category                               R1    R2   Cons  Cons%  Agree%
+--------------------------------------------------------------------------------
+Automated Grading                     277    58     50   8.1%   61.7%
+Authentic Assessment Redesign         103    33     24   3.9%   85.7%
+Academic Integrity                    386   112    105  17.1%   53.1%
+Formative and Adaptive Assessment     421   303    254  41.4%   64.8%
+Ethics and Policy                     319   287    230  37.5%   76.2%
+Perception and Affect                 262    61     43   7.0%   61.4%
+Review / Methodology                  582   192    185  30.1%   34.2%
+================================================================================
+
+UPDATE bare_conf.tex Table III with CONSENSUS_COUNT and CONSENSUS_PCT.
+Update the methodology section with the agreement rates above.
+Review taxonomy_disagreements.csv for manual inspection of disputed cases.

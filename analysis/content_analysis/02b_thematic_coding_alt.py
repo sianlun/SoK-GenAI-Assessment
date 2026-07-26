@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """
 Pipeline 2 – Round 2: Alternative Thematic Coding
-Script 02b: Taxonomy coding using independently worded vocabulary and
-            count-weighted scoring (≥ 2 distinct keyword hits required).
+Script 02b: Taxonomy coding using independently worded vocabulary.
 
 Round 2 counterpart to 02_thematic_coding.py.
 Design differences from Round 1:
-  - Input       : fulltext_extracts_alt.jsonl (pypdf, 12 pages)
-  - Vocabulary  : independently devised synonyms / paraphrases — NOT copies of
-                  Round 1 keywords; each category is represented by fresh wording
-                  that a second independent coder would naturally choose
-  - Matching    : requires ≥ MATCH_THRESHOLD (2) distinct keyword hits per category
-                  (Round 1 assigns on presence of any single keyword)
-  - No default  : unmatched papers remain uncoded (unlike Round 1's G fallback)
-                  to make disagreements visible rather than hiding them
+  - Input       : fulltext_extracts_alt.jsonl (pypdf extraction)
+  - Vocabulary  : independently devised synonyms / paraphrases (Vocabulary B) —
+                  no term appears in Vocabulary A; same 2+-word phrase rule applies
+  - Matching    : same threshold as Round 1 (any single keyword match), making
+                  vocabulary the sole variable between rounds
+  - No default  : unmatched papers remain uncoded so disagreements are visible
+  - Matching    : uses fast substring search (kw in text) — word-boundary regex
+                  is unnecessary for 2+-word phrases and adds significant overhead
 
 Run 03_consensus.py after both rounds to compute the consensus taxonomy counts
 that are reported in the paper.
@@ -39,70 +38,79 @@ CORPUS  = ROOT / "data" / "processed" / "corpus_final.json"
 EXTRACT = ROOT / "analysis" / "outputs" / "tables" / "fulltext_extracts_alt.jsonl"
 OUT     = ROOT / "analysis" / "outputs" / "tables"
 
-# ── Round 2 taxonomy vocabulary ──────────────────────────────────────────────
-# Each entry uses synonyms and paraphrases INDEPENDENT of Round 1's keyword set.
-# This simulates a second coder working from the same category definitions but
-# choosing their own vocabulary, as in the isvlsi26 dual-round methodology.
+# ── Vocabulary B (Round 2) ────────────────────────────────────────────────────
+# Design rules (revised):
+#   1. All terms are 2+ word phrases — no single generic words
+#   2. All terms are category-specific: independently devised synonyms and
+#      paraphrases that a second coder would naturally choose for the same
+#      category definitions, without reference to Vocabulary A
+#   3. No term appears in Vocabulary A (see 02_thematic_coding.py)
+#   4. Comparable breadth to Vocabulary A: terms should be similarly accessible
+#      (neither over-specific rare compound phrases nor over-broad generic terms)
+#
+# Threshold change (from ≥2 to ≥1):
+#   Both rounds now apply the same matching rule (any single keyword match).
+#   This isolates vocabulary as the sole variable between rounds, making the
+#   consensus a clean cross-vocabulary confirmation: a paper is counted only
+#   when two independently constructed vocabularies both identify it.
 
 TAXONOMY_ALT = {
     "A_automated_grading": [
-        # synonyms for automated grading / AI-based scoring
-        "machine grading", "computer-assisted grading", "algorithmic scoring",
-        "model-based scoring", "llm-based evaluation", "gpt-based assessment",
-        "generative ai grading", "large language model feedback",
-        "computational essay scoring", "code evaluation", "submission scoring",
-        "assignment evaluation", "automated marking system",
-        "ai-assisted marking", "natural language generation feedback",
+        # independent synonyms for AI/LLM-based grading and scoring
+        "machine grading", "computer-assisted grading", "algorithmic grading",
+        "model-based scoring", "llm-based grading", "gpt-based scoring",
+        "ai-assisted grading", "ai-assisted marking", "submission scoring",
+        "assignment evaluation", "homework grading", "test grading",
+        "marking automation", "grade automation", "automated assessment tool",
+        "ai marking system", "scoring automation",
     ],
     "B_authentic_assessment": [
-        # synonyms for authentic / performance-based / AI-resistant design
-        "real-world task", "situated assessment", "applied assessment",
-        "oral defence", "oral exam", "spoken assessment",
-        "industry-aligned assessment", "workplace simulation",
-        "competency demonstration", "hands-on evaluation",
-        "experiential assessment", "contextualised assessment",
-        "project work assessment", "design challenge",
-        "artefact plus reflection",
+        # independent synonyms for AI-aware/AI-resistant/AI-integrated assessment design
+        "rethinking assessment", "assessment innovation", "redesigned assessment",
+        "oral defence format", "synchronous oral assessment", "spoken assessment",
+        "reflective portfolio", "artefact-based assessment", "process-based assessment",
+        "ai-proof assessment", "cheat-resistant assessment", "ai-aware assessment",
+        "industry-aligned assessment", "workplace-based assessment", "situated assessment",
+        "experiential assessment", "design-based assessment",
     ],
     "C_academic_integrity": [
-        # synonyms for integrity / detection / misconduct
-        "academic honesty", "assessment fraud", "cheating behaviour",
-        "unauthorised assistance", "ai content detection",
-        "gpt-generated text", "ai watermarking", "originality verification",
-        "source attribution", "contract cheating prevention",
-        "ai misuse", "student dishonesty", "integrity violation",
-        "plagiarism detection tool", "essay authenticity",
+        # independent synonyms for academic honesty, AI detection, misconduct
+        "assessment integrity", "assessment fraud", "integrity enforcement",
+        "generative ai detection", "llm detection", "ai text identification",
+        "unauthorised assistance", "student dishonesty", "cheating behaviour",
+        "text authenticity", "originality verification", "ai watermarking",
+        "gpt-generated text", "ai misuse", "integrity policy",
+        "ai abuse", "academic fraud",
     ],
     "D_formative_adaptive": [
-        # synonyms for formative / adaptive / feedback loops
+        # independent synonyms for AI-driven formative/adaptive feedback
         "ongoing feedback", "continuous assessment", "diagnostic feedback",
-        "ai-assisted feedback", "chatbot tutor", "virtual teaching assistant",
-        "adaptive learning path", "hint generation", "socratic questioning",
-        "error correction feedback", "step-by-step guidance",
-        "personalized hint", "learning loop", "ai coaching",
-        "mastery-based assessment",
+        "ai coaching", "virtual tutor", "virtual teaching assistant",
+        "adaptive learning", "personalized learning", "learning pathway",
+        "hint generation", "socratic questioning", "guided feedback",
+        "mastery learning", "corrective feedback", "step-by-step feedback",
+        "ai-assisted feedback", "tailored feedback",
     ],
     "E_ethics_policy": [
-        # synonyms for ethics / governance / equity
-        "ethical implications", "algorithmic fairness", "data privacy",
-        "student data protection", "institutional guideline",
-        "university regulation", "government policy",
-        "digital equity", "technology access gap",
-        "environmental cost", "responsible use",
-        "accountability framework", "ai literacy",
-        "curriculum reform", "accreditation concern",
+        # independent synonyms for AI ethics, governance, equity in education
+        "ethical issues", "ethical challenges", "ethical framework",
+        "university regulation", "government regulation", "policy guideline",
+        "governance framework", "regulatory framework", "accountability framework",
+        "algorithmic fairness", "bias mitigation", "fairness concern",
+        "technology access gap", "inclusive access", "resource equity",
+        "privacy concern", "ethical consideration",
     ],
     "F_perception_affect": [
-        # synonyms for perception / affect / attitudes
-        "student attitude", "learner opinion", "user perception",
-        "affective response", "emotional impact", "student wellbeing",
-        "digital confidence", "self-efficacy", "ai apprehension",
-        "trust in ai", "comfort with ai", "resistance to ai",
-        "instructor view", "faculty attitude",
-        "academic community response",
+        # independent synonyms for student/instructor perceptions and affect
+        "learner attitude", "educator perception", "academic staff perception",
+        "affective response", "emotional response", "student emotions",
+        "digital self-efficacy", "academic self-efficacy", "ai confidence",
+        "resistance to ai", "discomfort with ai", "comfort with ai",
+        "instructor view", "faculty view", "staff attitude",
+        "ai engagement", "student engagement with ai",
     ],
     "G_review_methodology": [
-        # synonyms for review / methodology / synthesis
+        # independent synonyms for reviews and methodological papers
         "evidence synthesis", "knowledge mapping", "research landscape",
         "state of the art review", "survey of research",
         "thematic analysis", "content analysis review",
@@ -113,19 +121,22 @@ TAXONOMY_ALT = {
     ],
 }
 
-# Minimum distinct keyword hits required for category assignment (Round 2 is stricter)
-MATCH_THRESHOLD = 2
+# Both rounds now use the same threshold (any single keyword match).
+# Vocabulary is the sole variable between rounds.
+MATCH_THRESHOLD = 1
 
 
 def code_text_alt(text: str) -> list[str]:
-    """Assign categories where ≥ MATCH_THRESHOLD distinct keywords are found."""
+    """Assign categories where ≥ MATCH_THRESHOLD distinct keywords are found.
+
+    Uses fast substring search (kw in text_lower) rather than regex.
+    All Vocabulary B terms are 2+-word phrases, so substring matching is
+    equivalent to word-boundary regex without the compilation overhead.
+    """
     text_lower = text.lower()
     codes = []
     for cat, keywords in TAXONOMY_ALT.items():
-        hits = sum(
-            1 for kw in keywords
-            if re.search(r"\b" + re.escape(kw) + r"\b", text_lower)
-        )
+        hits = sum(1 for kw in keywords if kw in text_lower)
         if hits >= MATCH_THRESHOLD:
             codes.append(cat)
     # No default fallback — unmatched papers remain uncoded so disagreements are
@@ -140,7 +151,7 @@ def main():
     cat_counts = defaultdict(int)
 
     with open(EXTRACT, encoding="utf-8") as f:
-        for line in tqdm(f, desc="Round 2 coding (alt vocab, threshold ≥2)"):
+        for line in tqdm(f, desc="Round 2 coding (alt vocab, threshold ≥1)"):
             rec   = json.loads(line)
             fn    = rec["filename"]
             text  = rec.get("text", "")
@@ -176,7 +187,7 @@ def main():
     summary.to_csv(OUT / "taxonomy_summary_alt.csv", index=False)
 
     print(f"\nRound 2 coding complete: {n} papers → {OUT / 'thematic_coding_alt.csv'}")
-    print("\nRound 2 distribution (alt vocab, threshold ≥2):")
+    print("\nRound 2 distribution (alt vocab, threshold ≥1):")
     for _, r in summary.iterrows():
         bar = "█" * int(r["pct_r2"] / 2)
         print(f"  {r['category']:<30} {r['papers_r2']:>4} papers  {r['pct_r2']:>5.1f}%  {bar}")
