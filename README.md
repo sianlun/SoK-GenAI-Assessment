@@ -2,7 +2,7 @@
 
 Systematization of Knowledge (SoK) review repository.
 
-> Lau, S. L. (2026). *Evidence Quality in Generative AI Assessment Research: A Systematization of Knowledge for Engineering, STEM, and Computing Education.* IEEE TALE 2026. <!-- Citation will be updated upon acceptance. -->
+> Lau, S. L. (2026). *Evidence Quality in Generative AI Assessment Research: A Systematization of Knowledge for Engineering, STEM, and Computing Education.*. <!-- Citation will be updated upon acceptance. -->
 
 This repository contains the **input data and analysis code** to reproduce the taxonomy coding and consensus findings reported in the paper. PDF retrieval is not included; obtain papers via your institutional subscriptions using the DOIs in `data/processed/corpus_final.json`.
 
@@ -148,7 +148,7 @@ The two most confirmed thematic strands — Formative and Adaptive Assessment (D
   title     = {Evidence Quality in Generative {AI} Assessment Research:
                A Systematization of Knowledge for Engineering, {STEM},
                and Computing Education},
-  booktitle = {Proceedings of IEEE TALE 2026},
+  booktitle = {To be updated},
   year      = {2026},
   note      = {Under review},
 }
